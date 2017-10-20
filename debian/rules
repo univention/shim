@@ -6,6 +6,8 @@
 # should be building the other binaries also.
 ifeq ($(shell dpkg-vendor --is ubuntu && echo yes),yes)
 	cert=debian/canonical-uefi-ca.der
+else ifeq ($(shell dpkg-vendor --is univention && echo yes),yes)
+	cert=debian/univention-uefi-ca.der
 else
 	cert=debian/debian-uefi-ca.der
 endif
