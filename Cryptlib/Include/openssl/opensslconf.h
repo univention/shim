@@ -32,6 +32,9 @@ extern "C" {
 #ifndef OPENSSL_NO_DGRAM
 # define OPENSSL_NO_DGRAM
 #endif
+#ifndef OPENSSL_NO_DES
+# define OPENSSL_NO_DES
+#endif
 #ifndef OPENSSL_NO_DSA
 # define OPENSSL_NO_DSA
 #endif
@@ -56,8 +59,8 @@ extern "C" {
 #ifndef OPENSSL_NO_ENGINES
 # define OPENSSL_NO_ENGINES
 #endif
-#ifndef OPENSSL_NO_FILENAMES
-# define OPENSSL_NO_FILENAMES
+#ifdef OPENSSL_NO_FILENAMES
+# undef OPENSSL_NO_FILENAMES
 #endif
 #ifndef OPENSSL_NO_FP_API
 # define OPENSSL_NO_FP_API
@@ -86,14 +89,14 @@ extern "C" {
 #ifndef OPENSSL_NO_MD2
 # define OPENSSL_NO_MD2
 #endif
+#ifndef OPENSSL_NO_MD4
+# define OPENSSL_NO_MD4
+#endif
 #ifndef OPENSSL_NO_MDC2
 # define OPENSSL_NO_MDC2
 #endif
 #ifndef OPENSSL_NO_POSIX_IO
 # define OPENSSL_NO_POSIX_IO
-#endif
-#ifndef OPENSSL_NO_PQUEUE
-# define OPENSSL_NO_PQUEUE
 #endif
 #ifndef OPENSSL_NO_RC2
 # define OPENSSL_NO_RC2
@@ -262,9 +265,6 @@ extern "C" {
 # endif
 # if defined(OPENSSL_NO_POSIX_IO) && !defined(NO_POSIX_IO)
 #  define NO_POSIX_IO
-# endif
-# if defined(OPENSSL_NO_PQUEUE) && !defined(NO_PQUEUE)
-#  define NO_PQUEUE
 # endif
 # if defined(OPENSSL_NO_RC2) && !defined(NO_RC2)
 #  define NO_RC2

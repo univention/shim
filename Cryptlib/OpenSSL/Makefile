@@ -1,14 +1,17 @@
 
-EFI_INCLUDES	= -I../Include -I$(EFI_INCLUDE) -I$(EFI_INCLUDE)/$(ARCH) -I$(EFI_INCLUDE)/protocol -Icrypto/asn1 -Icrypto/evp -Icrypto/modes
+EFI_INCLUDES	= -I$(TOPDIR)/../Include \
+		  -I$(EFI_INCLUDE) -I$(EFI_INCLUDE)/$(ARCH) -I$(EFI_INCLUDE)/protocol \
+		  -I$(TOPDIR)/crypto/asn1 -I$(TOPDIR)/crypto/evp -I$(TOPDIR)/crypto/modes -I$(TOPDIR)/crypto/include
 
-CFLAGS		= -ggdb -O0 -I. -I.. -I../Include/ -Icrypto -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -nostdinc \
+CFLAGS		= -ggdb -O0 -I$(TOPDIR) -I$(TOPDIR)/.. -I$(TOPDIR)/../Include/ -I$(TOPDIR)/crypto \
+		  -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -nostdinc \
 		  -ffreestanding -std=gnu89 -I$(shell $(CC) -print-file-name=include) \
 		  -Wall $(EFI_INCLUDES) -DL_ENDIAN -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DOPENSSL_SMALL_FOOTPRINT -DPEDANTIC
 
 ifeq ($(ARCH),x86_64)
 	CFLAGS	+= -mno-mmx -mno-sse -mno-red-zone -maccumulate-outgoing-args \
 		-DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI \
-		-UNO_BUILTIN_VA_FUNCS -DMDE_CPU_IA64
+		-UNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64
 endif
 ifeq ($(ARCH),ia32)
 	CFLAGS	+= -mno-mmx -mno-sse -mno-red-zone -maccumulate-outgoing-args \
@@ -38,8 +41,6 @@ OBJS		=   crypto/cryptlib.o \
   crypto/o_fips.o \
   crypto/o_init.o \
   crypto/fips_ers.o \
-  crypto/md4/md4_dgst.o \
-  crypto/md4/md4_one.o \
   crypto/md5/md5_dgst.o \
   crypto/md5/md5_one.o \
   crypto/sha/sha_dgst.o \
@@ -51,32 +52,6 @@ OBJS		=   crypto/cryptlib.o \
   crypto/hmac/hmac.o \
   crypto/hmac/hm_ameth.o \
   crypto/hmac/hm_pmeth.o \
-  crypto/des/set_key.o \
-  crypto/des/ecb_enc.o \
-  crypto/des/cbc_enc.o \
-  crypto/des/ecb3_enc.o \
-  crypto/des/cfb64enc.o \
-  crypto/des/cfb64ede.o \
-  crypto/des/cfb_enc.o \
-  crypto/des/ofb64ede.o \
-  crypto/des/enc_read.o \
-  crypto/des/enc_writ.o \
-  crypto/des/ofb64enc.o \
-  crypto/des/ofb_enc.o \
-  crypto/des/str2key.o \
-  crypto/des/pcbc_enc.o \
-  crypto/des/qud_cksm.o \
-  crypto/des/rand_key.o \
-  crypto/des/des_enc.o \
-  crypto/des/fcrypt_b.o \
-  crypto/des/fcrypt.o \
-  crypto/des/xcbc_enc.o \
-  crypto/des/rpc_enc.o \
-  crypto/des/cbc_cksm.o \
-  crypto/des/ede_cbcm_enc.o \
-  crypto/des/des_old.o \
-  crypto/des/des_old2.o \
-  crypto/des/read2pwd.o \
   crypto/rc4/rc4_enc.o \
   crypto/rc4/rc4_skey.o \
   crypto/rc4/rc4_utl.o \
@@ -455,10 +430,6 @@ OBJS		=   crypto/cryptlib.o \
   crypto/ocsp/ocsp_prn.o \
   crypto/ocsp/ocsp_vfy.o \
   crypto/ocsp/ocsp_err.o \
-  crypto/ui/ui_lib.o \
-  crypto/ui/ui_util.o \
-  crypto/ui/ui_compat.o \
-  crypto/krb5/krb5_asn.o \
   crypto/cmac/cmac.o \
   crypto/cmac/cm_ameth.o \
   crypto/cmac/cm_pmeth.o \
