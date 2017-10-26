@@ -1,3 +1,13 @@
+shim (13-0.1) unstable; urgency=low
+
+  * New upstream version.
+    - Drop debian/patches/second-stage-path
+    - Drop debian/patches/sbsigntool-not-pesign and add ENABLE_SBSIGN in
+      debian/rules
+    - Add debian/patches/Fix-*.patch to fix build issues for Debian.
+
+ -- Philipp Hahn <hahn@univention.de>  Thu, 26 Oct 2017 15:33:45 +0200
+
 shim (0.9+1474479173.6c180c6-1) unstable; urgency=medium
 
   [ Steve Langasek ]

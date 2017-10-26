@@ -1,0 +1,31 @@
+From: Philipp Hahn <hahn@univention.de>
+Date: Mon, 30 Oct 2017 13:16:48 +0100
+Subject: Fix building in a subdirectory due missing TOPDIR
+
+This fixes 8a6d270d707df229a3f2a1d5bcf52a84141950b8, as TOPDIR is
+undefined when building in Debian: debian/rules is a Makefile itself and
+MAKELEVEL then starts with 1.
+
+Verified doing 3 builds:
+    mkdir build-x64 build-ia32
+    make -C build-x64 TOPDIR=.. -f ../Makefile
+    setarch i686 -B make -C build-ia32 ARCH=ia32 TOPDIR=.. -f ../Makefile
+    make
+---
+ Makefile | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 0328737..a63c189 100644
+--- a/Makefile
++++ b/Makefile
+@@ -5,9 +5,7 @@ else
+ DASHRELEASE	?=
+ endif
+ 
+-ifeq ($(MAKELEVEL),0)
+ TOPDIR		?= $(shell pwd)
+-endif
+ override TOPDIR	:= $(abspath $(TOPDIR))
+ VPATH		= $(TOPDIR)
+ 

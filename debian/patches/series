@@ -1,2 +1,2 @@
-second-stage-path
-sbsigntool-not-pesign
+Fix-building-in-a-subdirectory-due-missing-TOPDIR.patch
+Fix-BASHism-in-Makefile.patch
