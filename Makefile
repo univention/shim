@@ -5,9 +5,7 @@ else
 DASHRELEASE	?=
 endif
 
-ifeq ($(MAKELEVEL),0)
 TOPDIR		?= $(shell pwd)
-endif
 override TOPDIR	:= $(abspath $(TOPDIR))
 VPATH		= $(TOPDIR)
 
