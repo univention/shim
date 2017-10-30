@@ -16,7 +16,10 @@ endif
 	dh $@ --parallel
 
 override_dh_auto_build:
-	dh_auto_build -- EFI_PATH=/usr/lib VENDOR_CERT_FILE=$(cert) ENABLE_SBSIGN=1 ENABLE_SHIM_CERT=1
+	dh_auto_build -- EFI_PATH=/usr/lib VENDOR_CERT_FILE=$(cert) ENABLE_SBSIGN=1
+
+override_dh_auto_install: ;
+	$(MAKE) install-as-data DESTDIR=$(CURDIR)/debian/shim DATATARGETDIR=usr/lib/shim
 
 override_dh_fixperms:
 	dh_fixperms
