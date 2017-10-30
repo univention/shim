@@ -211,11 +211,11 @@ $(MMSONAME): $(MOK_OBJS) Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a li
 	$(LD) -o $@ $(LDFLAGS) $^ $(EFI_LIBS) lib/lib.a
 
 Cryptlib/libcryptlib.a:
-	mkdir -p Cryptlib/{Hash,Hmac,Cipher,Rand,Pk,Pem,SysCall}
+	mkdir -p Cryptlib/Hash Cryptlib/Hmac Cryptlib/Cipher Cryptlib/Rand Cryptlib/Pk Cryptlib/Pem Cryptlib/SysCall
 	$(MAKE) VPATH=$(TOPDIR)/Cryptlib TOPDIR=$(TOPDIR)/Cryptlib -C Cryptlib -f $(TOPDIR)/Cryptlib/Makefile
 
 Cryptlib/OpenSSL/libopenssl.a:
-	mkdir -p Cryptlib/OpenSSL/crypto/{x509v3,x509,txt_db,stack,sha,rsa,rc4,rand,pkcs7,pkcs12,pem,ocsp,objects,modes,md5,lhash,kdf,hmac,evp,err,dso,dh,conf,comp,cmac,buffer,bn,bio,async{,/arch},asn1,aes}/
+	mkdir -p Cryptlib/OpenSSL/crypto/x509v3/ Cryptlib/OpenSSL/crypto/x509/ Cryptlib/OpenSSL/crypto/txt_db/ Cryptlib/OpenSSL/crypto/stack/ Cryptlib/OpenSSL/crypto/sha/ Cryptlib/OpenSSL/crypto/rsa/ Cryptlib/OpenSSL/crypto/rc4/ Cryptlib/OpenSSL/crypto/rand/ Cryptlib/OpenSSL/crypto/pkcs7/ Cryptlib/OpenSSL/crypto/pkcs12/ Cryptlib/OpenSSL/crypto/pem/ Cryptlib/OpenSSL/crypto/ocsp/ Cryptlib/OpenSSL/crypto/objects/ Cryptlib/OpenSSL/crypto/modes/ Cryptlib/OpenSSL/crypto/md5/ Cryptlib/OpenSSL/crypto/lhash/ Cryptlib/OpenSSL/crypto/kdf/ Cryptlib/OpenSSL/crypto/hmac/ Cryptlib/OpenSSL/crypto/evp/ Cryptlib/OpenSSL/crypto/err/ Cryptlib/OpenSSL/crypto/dso/ Cryptlib/OpenSSL/crypto/dh/ Cryptlib/OpenSSL/crypto/conf/ Cryptlib/OpenSSL/crypto/comp/ Cryptlib/OpenSSL/crypto/cmac/ Cryptlib/OpenSSL/crypto/buffer/ Cryptlib/OpenSSL/crypto/bn/ Cryptlib/OpenSSL/crypto/bio/ Cryptlib/OpenSSL/crypto/async/ Cryptlib/OpenSSL/crypto/async/arch/ Cryptlib/OpenSSL/crypto/asn1/ Cryptlib/OpenSSL/crypto/aes/
 	$(MAKE) VPATH=$(TOPDIR)/Cryptlib/OpenSSL TOPDIR=$(TOPDIR)/Cryptlib/OpenSSL -C Cryptlib/OpenSSL -f $(TOPDIR)/Cryptlib/OpenSSL/Makefile
 
 lib/lib.a:
